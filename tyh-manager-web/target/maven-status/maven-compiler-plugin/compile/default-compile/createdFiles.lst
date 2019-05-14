@@ -1,0 +1,5 @@
+edu\etime\tyh\manager\controller\AdminController.class
+edu\etime\tyh\manager\controller\ProductController.class
+edu\etime\tyh\manager\controller\UploadImgController.class
+edu\etime\tyh\manager\controller\SortController.class
+edu\etime\tyh\manager\controller\UploadController.class

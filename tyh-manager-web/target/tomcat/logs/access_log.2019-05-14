@@ -1,0 +1,2 @@
+0:0:0:0:0:0:0:1 - - [14/May/2019:08:43:10 +0800] "GET /product/getProductList HTTP/1.1" 200 12610 http-bio-8080-exec-1 16414
+0:0:0:0:0:0:0:1 - - [14/May/2019:08:44:08 +0800] "GET /upload/goUpload HTTP/1.1" 200 10748 http-bio-8080-exec-4 273

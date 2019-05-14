@@ -1,0 +1,9 @@
+edu\etime\tyh\manager\dao\mapper\SysfunctionMapper.class
+edu\etime\tyh\manager\dao\mapper\AdminMapper.class
+edu\etime\tyh\manager\dao\mapper\ProductMapper.class
+edu\etime\tyh\manager\dao\mapper\SortMapper.class
+edu\etime\tyh\manager\dao\mapper\SysroleMapper.class
+edu\etime\tyh\manager\dao\mapper\EntryMapper.class
+edu\etime\tyh\manager\dao\mapper\CustomMapper.class
+edu\etime\tyh\manager\dao\mapper\SysrolefunMapper.class
+edu\etime\tyh\manager\dao\mapper\OrdersMapper.class

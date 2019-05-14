@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.etime.tyh.manager.dao.mapper.EntryMapper" >
+  <resultMap id="BaseResultMap" type="edu.etime.tyh.pojo.Entry" >
+    <id column="entryid" property="entryid" jdbcType="VARCHAR" />
+    <result column="orderid" property="orderid" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="proid" property="proid" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    entryid, orderid, userid, proid, price, count
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from entry
+    where entryid = #{entryid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from entry
+    where entryid = #{entryid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.etime.tyh.pojo.Entry" >
+    insert into entry (entryid, orderid, userid, 
+      proid, price, count
+      )
+    values (#{entryid,jdbcType=VARCHAR}, #{orderid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
+      #{proid,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.etime.tyh.pojo.Entry" >
+    insert into entry
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="entryid != null" >
+        entryid,
+      </if>
+      <if test="orderid != null" >
+        orderid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="proid != null" >
+        proid,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="entryid != null" >
+        #{entryid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="proid != null" >
+        #{proid,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.etime.tyh.pojo.Entry" >
+    update entry
+    <set >
+      <if test="orderid != null" >
+        orderid = #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="proid != null" >
+        proid = #{proid,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+    </set>
+    where entryid = #{entryid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.etime.tyh.pojo.Entry" >
+    update entry
+    set orderid = #{orderid,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=VARCHAR},
+      proid = #{proid,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER}
+    where entryid = #{entryid,jdbcType=VARCHAR}
+  </update>
+</mapper>

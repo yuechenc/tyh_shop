@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!-- 引入外部配置文件（数据库的连接方式） -->
+	<context:property-placeholder location="classpath:db.properties" />
+	<!-- 配置 C3P0 的数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="password" value="${jdbc.pwd}"></property>
+		<property name="driverClass" value="${jdbc.driver}"></property>
+		<property name="jdbcUrl" value="${jdbc.url}"></property>
+		<property name="initialPoolSize" value="${jdbc.initPoolSize}"></property>
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
+	</bean>
+	<!-- mapper 配置 -->
+	<!-- 让 spring 管理 sqlsessionfactory 使用 mybatis 和 spring 整合包中的 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 数据库连接池 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 加载 mybatis 的全局配置文件， 虽然这个全局配置文件是空的， 但是这个全 局配置文件是必不可少的 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<!-- 扫描 sql 配置文件:mapper 需要的 xml 文件 -->
+		<property name="mapperLocations" value="classpath:mapper/*.xml" />
+	</bean>
+	<!-- 配置 Mapper 扫描器 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="edu.etime.tyh.manager.dao.mapper" />
+	</bean>
+</beans>

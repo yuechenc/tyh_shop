@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	<context:component-scan base-package="edu.etime.tyh.manager.controller" />
+	<mvc:annotation-driven />
+	<mvc:resources location="/static/" mapping="/static/**" />
+	<mvc:resources location="/ckeditor/" mapping="/ckeditor/**" />
+
+	<mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
+	<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
+		
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- 配置多媒体文件解析器 -->
+	<!-- 文件上传 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置上传文件的最大尺寸为 10MB 1024*1024*10 -->
+		<property name="maxUploadSize">
+			<value>10485760</value>
+		</property>
+	</bean>
+
+	<!-- 引用 dubbo 服务 -->
+	<dubbo:application name="tyh.manager-web" />
+	<dubbo:registry protocol="zookeeper" address="47.100.224.4:2181" />
+	<dubbo:reference interface="edu.etime.tyh.manager.interfaces.SortService"
+		id="sortServiceImpl" />
+	<dubbo:reference interface="edu.etime.tyh.manager.interfaces.ProductService"
+		id="productServiceImpl" />
+
+	
+
+</beans>
