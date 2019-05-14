@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.etime.tyh.home.dao.mapper.AdminMapper" >
+  <resultMap id="BaseResultMap" type="edu.etime.tyh.pojo.Admin" >
+    <id column="admid" property="admid" jdbcType="VARCHAR" />
+    <result column="roleid" property="roleid" jdbcType="VARCHAR" />
+    <result column="admusername" property="admusername" jdbcType="VARCHAR" />
+    <result column="admpwd" property="admpwd" jdbcType="VARCHAR" />
+    <result column="admrealname" property="admrealname" jdbcType="VARCHAR" />
+    <result column="admsex" property="admsex" jdbcType="VARCHAR" />
+    <result column="admphpne" property="admphpne" jdbcType="VARCHAR" />
+    <result column="admaddr" property="admaddr" jdbcType="VARCHAR" />
+    <result column="admstate" property="admstate" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    admid, roleid, admusername, admpwd, admrealname, admsex, admphpne, admaddr, admstate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+    where admid = #{admid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from admin
+    where admid = #{admid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.etime.tyh.pojo.Admin" >
+    insert into admin (admid, roleid, admusername, 
+      admpwd, admrealname, admsex, 
+      admphpne, admaddr, admstate
+      )
+    values (#{admid,jdbcType=VARCHAR}, #{roleid,jdbcType=VARCHAR}, #{admusername,jdbcType=VARCHAR}, 
+      #{admpwd,jdbcType=VARCHAR}, #{admrealname,jdbcType=VARCHAR}, #{admsex,jdbcType=VARCHAR}, 
+      #{admphpne,jdbcType=VARCHAR}, #{admaddr,jdbcType=VARCHAR}, #{admstate,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.etime.tyh.pojo.Admin" >
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="admid != null" >
+        admid,
+      </if>
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="admusername != null" >
+        admusername,
+      </if>
+      <if test="admpwd != null" >
+        admpwd,
+      </if>
+      <if test="admrealname != null" >
+        admrealname,
+      </if>
+      <if test="admsex != null" >
+        admsex,
+      </if>
+      <if test="admphpne != null" >
+        admphpne,
+      </if>
+      <if test="admaddr != null" >
+        admaddr,
+      </if>
+      <if test="admstate != null" >
+        admstate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="admid != null" >
+        #{admid,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="admusername != null" >
+        #{admusername,jdbcType=VARCHAR},
+      </if>
+      <if test="admpwd != null" >
+        #{admpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="admrealname != null" >
+        #{admrealname,jdbcType=VARCHAR},
+      </if>
+      <if test="admsex != null" >
+        #{admsex,jdbcType=VARCHAR},
+      </if>
+      <if test="admphpne != null" >
+        #{admphpne,jdbcType=VARCHAR},
+      </if>
+      <if test="admaddr != null" >
+        #{admaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="admstate != null" >
+        #{admstate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.etime.tyh.pojo.Admin" >
+    update admin
+    <set >
+      <if test="roleid != null" >
+        roleid = #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="admusername != null" >
+        admusername = #{admusername,jdbcType=VARCHAR},
+      </if>
+      <if test="admpwd != null" >
+        admpwd = #{admpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="admrealname != null" >
+        admrealname = #{admrealname,jdbcType=VARCHAR},
+      </if>
+      <if test="admsex != null" >
+        admsex = #{admsex,jdbcType=VARCHAR},
+      </if>
+      <if test="admphpne != null" >
+        admphpne = #{admphpne,jdbcType=VARCHAR},
+      </if>
+      <if test="admaddr != null" >
+        admaddr = #{admaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="admstate != null" >
+        admstate = #{admstate,jdbcType=INTEGER},
+      </if>
+    </set>
+    where admid = #{admid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.etime.tyh.pojo.Admin" >
+    update admin
+    set roleid = #{roleid,jdbcType=VARCHAR},
+      admusername = #{admusername,jdbcType=VARCHAR},
+      admpwd = #{admpwd,jdbcType=VARCHAR},
+      admrealname = #{admrealname,jdbcType=VARCHAR},
+      admsex = #{admsex,jdbcType=VARCHAR},
+      admphpne = #{admphpne,jdbcType=VARCHAR},
+      admaddr = #{admaddr,jdbcType=VARCHAR},
+      admstate = #{admstate,jdbcType=INTEGER}
+    where admid = #{admid,jdbcType=VARCHAR}
+  </update>
+</mapper>

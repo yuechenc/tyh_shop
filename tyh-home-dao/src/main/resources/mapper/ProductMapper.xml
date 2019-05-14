@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.etime.tyh.home.dao.mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="edu.etime.tyh.pojo.Product" >
+    <id column="proid" property="proid" jdbcType="VARCHAR" />
+    <result column="sorid" property="sorid" jdbcType="VARCHAR" />
+    <result column="proname" property="proname" jdbcType="VARCHAR" />
+    <result column="salecount" property="salecount" jdbcType="INTEGER" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="saleprice" property="saleprice" jdbcType="VARCHAR" />
+    <result column="saledate" property="saledate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.etime.tyh.pojo.Product" extends="BaseResultMap" >
+    <result column="decript" property="decript" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    proid, sorid, proname, salecount, image, price, saleprice, saledate
+  </sql>
+  <sql id="Blob_Column_List" >
+    decript
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from product
+    where proid = #{proid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from product
+    where proid = #{proid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.etime.tyh.pojo.Product" >
+    insert into product (proid, sorid, proname, 
+      salecount, image, price, 
+      saleprice, saledate, decript
+      )
+    values (#{proid,jdbcType=VARCHAR}, #{sorid,jdbcType=VARCHAR}, #{proname,jdbcType=VARCHAR}, 
+      #{salecount,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
+      #{saleprice,jdbcType=VARCHAR}, #{saledate,jdbcType=TIMESTAMP}, #{decript,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.etime.tyh.pojo.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="proid != null" >
+        proid,
+      </if>
+      <if test="sorid != null" >
+        sorid,
+      </if>
+      <if test="proname != null" >
+        proname,
+      </if>
+      <if test="salecount != null" >
+        salecount,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="saleprice != null" >
+        saleprice,
+      </if>
+      <if test="saledate != null" >
+        saledate,
+      </if>
+      <if test="decript != null" >
+        decript,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="proid != null" >
+        #{proid,jdbcType=VARCHAR},
+      </if>
+      <if test="sorid != null" >
+        #{sorid,jdbcType=VARCHAR},
+      </if>
+      <if test="proname != null" >
+        #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="salecount != null" >
+        #{salecount,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="saleprice != null" >
+        #{saleprice,jdbcType=VARCHAR},
+      </if>
+      <if test="saledate != null" >
+        #{saledate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="decript != null" >
+        #{decript,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.etime.tyh.pojo.Product" >
+    update product
+    <set >
+      <if test="sorid != null" >
+        sorid = #{sorid,jdbcType=VARCHAR},
+      </if>
+      <if test="proname != null" >
+        proname = #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="salecount != null" >
+        salecount = #{salecount,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="saleprice != null" >
+        saleprice = #{saleprice,jdbcType=VARCHAR},
+      </if>
+      <if test="saledate != null" >
+        saledate = #{saledate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="decript != null" >
+        decript = #{decript,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where proid = #{proid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.etime.tyh.pojo.Product" >
+    update product
+    set sorid = #{sorid,jdbcType=VARCHAR},
+      proname = #{proname,jdbcType=VARCHAR},
+      salecount = #{salecount,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      saleprice = #{saleprice,jdbcType=VARCHAR},
+      saledate = #{saledate,jdbcType=TIMESTAMP},
+      decript = #{decript,jdbcType=LONGVARCHAR}
+    where proid = #{proid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.etime.tyh.pojo.Product" >
+    update product
+    set sorid = #{sorid,jdbcType=VARCHAR},
+      proname = #{proname,jdbcType=VARCHAR},
+      salecount = #{salecount,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      saleprice = #{saleprice,jdbcType=VARCHAR},
+      saledate = #{saledate,jdbcType=TIMESTAMP}
+    where proid = #{proid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.etime.tyh.home.dao.mapper.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="edu.etime.tyh.pojo.Orders" >
+    <id column="orderid" property="orderid" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="orderno" property="orderno" jdbcType="VARCHAR" />
+    <result column="sendname" property="sendname" jdbcType="VARCHAR" />
+    <result column="sendadress" property="sendadress" jdbcType="VARCHAR" />
+    <result column="sendtel" property="sendtel" jdbcType="VARCHAR" />
+    <result column="payment" property="payment" jdbcType="VARCHAR" />
+    <result column="meno" property="meno" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="DATE" />
+    <result column="tag" property="tag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderid, userid, orderno, sendname, sendadress, sendtel, payment, meno, time, tag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where orderid = #{orderid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from orders
+    where orderid = #{orderid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.etime.tyh.pojo.Orders" >
+    insert into orders (orderid, userid, orderno, 
+      sendname, sendadress, sendtel, 
+      payment, meno, time, tag
+      )
+    values (#{orderid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{orderno,jdbcType=VARCHAR}, 
+      #{sendname,jdbcType=VARCHAR}, #{sendadress,jdbcType=VARCHAR}, #{sendtel,jdbcType=VARCHAR}, 
+      #{payment,jdbcType=VARCHAR}, #{meno,jdbcType=VARCHAR}, #{time,jdbcType=DATE}, #{tag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.etime.tyh.pojo.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="orderno != null" >
+        orderno,
+      </if>
+      <if test="sendname != null" >
+        sendname,
+      </if>
+      <if test="sendadress != null" >
+        sendadress,
+      </if>
+      <if test="sendtel != null" >
+        sendtel,
+      </if>
+      <if test="payment != null" >
+        payment,
+      </if>
+      <if test="meno != null" >
+        meno,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="tag != null" >
+        tag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="sendname != null" >
+        #{sendname,jdbcType=VARCHAR},
+      </if>
+      <if test="sendadress != null" >
+        #{sendadress,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtel != null" >
+        #{sendtel,jdbcType=VARCHAR},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="meno != null" >
+        #{meno,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=DATE},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.etime.tyh.pojo.Orders" >
+    update orders
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null" >
+        orderno = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="sendname != null" >
+        sendname = #{sendname,jdbcType=VARCHAR},
+      </if>
+      <if test="sendadress != null" >
+        sendadress = #{sendadress,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtel != null" >
+        sendtel = #{sendtel,jdbcType=VARCHAR},
+      </if>
+      <if test="payment != null" >
+        payment = #{payment,jdbcType=VARCHAR},
+      </if>
+      <if test="meno != null" >
+        meno = #{meno,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=DATE},
+      </if>
+      <if test="tag != null" >
+        tag = #{tag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where orderid = #{orderid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.etime.tyh.pojo.Orders" >
+    update orders
+    set userid = #{userid,jdbcType=VARCHAR},
+      orderno = #{orderno,jdbcType=VARCHAR},
+      sendname = #{sendname,jdbcType=VARCHAR},
+      sendadress = #{sendadress,jdbcType=VARCHAR},
+      sendtel = #{sendtel,jdbcType=VARCHAR},
+      payment = #{payment,jdbcType=VARCHAR},
+      meno = #{meno,jdbcType=VARCHAR},
+      time = #{time,jdbcType=DATE},
+      tag = #{tag,jdbcType=INTEGER}
+    where orderid = #{orderid,jdbcType=VARCHAR}
+  </update>
+</mapper>
